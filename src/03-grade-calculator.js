@@ -25,46 +25,29 @@
  * @returns {string} The letter grade or "INVALID"
  */
 export function calculateGrade(score, hasExtraCredit) {
-  let marks,grade;
-  if(marks > 100 && marks < 0) return "INVALID";
 
 
+  if (score < 0 || score > 100) {
+    return "INVALID";
+  }
 
-  if(marks >= 0 && marks <= 59){
-    grade = "F"
-    if(hasExtraCredit && (54 < marks <= 59)){
-      return marks = marks + 5,grade = "D";
-    }
-    return grade,marks; 
+
+  let finalScore = score;
+  if (hasExtraCredit) {
+    finalScore = Math.min(score + 5, 100);
   }
-  else if(marks >= 60 && marks <= 69){
-    grade = "D"
-   if(hasExtraCredit && (64 < marks <= 69)){
-      return marks = marks + 5,grade = "C";
-    }
-    return grade,marks;
+
+
+  if (finalScore >= 90) {
+    return "A";
+  } else if (finalScore >= 80) {
+    return "B";
+  } else if (finalScore >= 70) {
+    return "C";
+  } else if (finalScore >= 60) {
+    return "D";
+  } else {
+    return "F";
   }
-  else if(marks >= 70 && marks <= 79){
-    grade = "C"
-    if(hasExtraCredit && (74 < marks <= 79)){
-      return marks = marks + 5,grade = "B";
-    }
-    return grade,marks;
-  }
-  else if(marks >= 80 && marks <=89){
-    grade = "B"
-    if(hasExtraCredit && (84 < marks <= 89)){
-      return marks = marks + 5,grade = "A";
-    }
-    return grade,marks;
-  }
-  else{
-    grade = "A"
-    if(hasExtraCredit && (94 < marks <=95)){
-      return marks = marks + 5,grade = "A";
-    }else if(hasExtraCredit && (95 < marks <=100)){
-      return marks = 100,grade = "A";
-    }
-    return grade,marks;
 }
-}
+
